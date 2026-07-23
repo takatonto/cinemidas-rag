@@ -79,3 +79,19 @@ flowchart LR
     C --> E[Contexto recuperado]
     E --> F[Modelo de linguagem]
     F --> G[Resposta com indicação da fonte]
+```
+
+## Perguntas planejadas
+
+O CineMidas será desenvolvido para responder perguntas como:
+
+- Até quando posso cancelar um ingresso comprado pelo aplicativo?
+- A taxa de conveniência é devolvida em um cancelamento?
+- O que acontece quando o cliente não comprova o direito à meia-entrada?
+- Posso transferir meu ingresso para outra sessão?
+- Todas as sessões possuem audiodescrição?
+- É permitido entrar com alimentos comprados fora do cinema?
+- Como funcionam os pontos do CineViva Club?
+- Por quanto tempo um objeto perdido fica guardado?
+
+O agente também será avaliado com perguntas que não possuem resposta no documento, solicitações de acesso a pedidos e pedidos de exceção às políticas.
