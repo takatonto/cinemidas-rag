@@ -6,7 +6,11 @@ Agente corporativo baseado em RAG para responder dúvidas frequentes sobre os se
 
 ## Status do projeto
 
-Em desenvolvimento.
+Protótipo RAG funcional no Google Colab.
+
+O projeto já processa o manual em PDF, cria embeddings, recupera trechos relevantes, gera respostas com o Gemini e disponibiliza uma interface de chatbot com Gradio.
+
+O deploy na Oracle Cloud Infrastructure ainda está pendente.
 
 ## Problema
 
@@ -81,33 +85,50 @@ flowchart LR
     F --> G[Resposta com indicação da fonte]
 ```
 
-## Perguntas planejadas
+## Exemplos de perguntas e respostas
 
-O CineMidas será desenvolvido para responder perguntas como:
+Os exemplos abaixo foram gerados pelo protótipo funcional.
 
-- Até quando posso cancelar um ingresso comprado pelo aplicativo?
-- A taxa de conveniência é devolvida em um cancelamento?
-- O que acontece quando o cliente não comprova o direito à meia-entrada?
-- Posso transferir meu ingresso para outra sessão?
-- Todas as sessões possuem audiodescrição?
-- É permitido entrar com alimentos comprados fora do cinema?
-- Como funcionam os pontos do CineViva Club?
-- Por quanto tempo um objeto perdido fica guardado?
+### Exemplo 1 — Cancelamento de ingresso
 
-O agente também será avaliado com perguntas que não possuem resposta no documento, solicitações de acesso a pedidos e pedidos de exceção às políticas.
+**Pergunta:**
 
-## Tecnologias planejadas
+> Até quando posso cancelar um ingresso comprado pelo aplicativo?
 
-A implementação inicial utilizará:
+**Resposta:**
 
-- **Python:** linguagem principal do projeto.
-- **LangChain:** organização do fluxo de RAG.
-- **PyPDF:** extração do conteúdo do manual em PDF.
-- **Google Gemini:** geração das respostas e criação de representações semânticas.
-- **Base vetorial local:** armazenamento e pesquisa dos trechos do documento.
-- **Streamlit:** interface de perguntas e respostas.
-- **Python dotenv:** leitura das variáveis de ambiente locais.
-- **Oracle Cloud Infrastructure Compute:** hospedagem da aplicação.
+> Ingressos comprados pelo aplicativo podem ser cancelados até duas horas antes do horário de início da sessão. O cancelamento deve ser solicitado pela área “Meus pedidos”.
+>
+> É possível cancelar apenas alguns ingressos do pedido, desde que o prazo de cancelamento ainda esteja aberto, os ingressos selecionados não tenham sido utilizados e a sessão ainda não tenha começado. Após o limite de duas horas, o cancelamento voluntário não fica disponível.
+>
+> Fonte: página 4, trecho CV-012.
+
+### Exemplo 2 — Informação inexistente
+
+**Pergunta:**
+
+> Qual será o próximo filme exclusivo produzido pela Rede CineViva?
+
+**Resposta:**
+
+> Não encontrei essa informação no Manual de Atendimento da Rede CineViva. Recomendo encaminhar a dúvida para a equipe responsável.
+
+O segundo exemplo demonstra que o agente foi orientado a não inventar respostas quando o documento não contém informação suficiente.
+
+## Tecnologias utilizadas
+
+- **Python 3:** linguagem principal.
+- **Google Colab:** ambiente de desenvolvimento e validação.
+- **LangChain:** componentes do fluxo de RAG.
+- **PyPDF:** extração do conteúdo do PDF.
+- **RecursiveCharacterTextSplitter:** divisão do documento em trechos.
+- **Gemini Embedding:** criação das representações semânticas.
+- **InMemoryVectorStore:** armazenamento vetorial do protótipo.
+- **Gemini 2.5 Flash:** geração das respostas.
+- **Gradio:** interface conversacional.
+- **Oracle Cloud Infrastructure Compute:** serviço planejado para o deploy.
+
+As credenciais são carregadas por variáveis de ambiente e não são armazenadas no repositório.
 
 As tecnologias poderão ser ajustadas caso os testes revelem problemas de compatibilidade ou implantação.
 
@@ -127,3 +148,20 @@ As tecnologias poderão ser ajustadas caso os testes revelem problemas de compat
 A chave da API do Gemini deverá ser informada por meio da variável de ambiente:
 
 GEMINI_API_KEY
+
+## Progresso
+
+- [x] Criar o repositório público.
+- [x] Definir o problema e o escopo.
+- [x] Adicionar o manual em Markdown.
+- [x] Revisar e converter o manual para PDF.
+- [x] Definir a arquitetura técnica.
+- [x] Implementar a leitura do PDF.
+- [x] Implementar a divisão do documento.
+- [x] Implementar a recuperação de contexto.
+- [x] Integrar o modelo Gemini.
+- [x] Criar a interface de chatbot.
+- [ ] Executar o conjunto completo de validação.
+- [ ] Preparar a aplicação para execução fora do Colab.
+- [ ] Implantar a aplicação na OCI.
+- [ ] Adicionar link e evidências do deploy.
