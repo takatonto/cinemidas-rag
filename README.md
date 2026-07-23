@@ -95,3 +95,35 @@ O CineMidas será desenvolvido para responder perguntas como:
 - Por quanto tempo um objeto perdido fica guardado?
 
 O agente também será avaliado com perguntas que não possuem resposta no documento, solicitações de acesso a pedidos e pedidos de exceção às políticas.
+
+## Tecnologias planejadas
+
+A implementação inicial utilizará:
+
+- **Python:** linguagem principal do projeto.
+- **LangChain:** organização do fluxo de RAG.
+- **PyPDF:** extração do conteúdo do manual em PDF.
+- **Google Gemini:** geração das respostas e criação de representações semânticas.
+- **Base vetorial local:** armazenamento e pesquisa dos trechos do documento.
+- **Streamlit:** interface de perguntas e respostas.
+- **Python dotenv:** leitura das variáveis de ambiente locais.
+- **Oracle Cloud Infrastructure Compute:** hospedagem da aplicação.
+
+As tecnologias poderão ser ajustadas caso os testes revelem problemas de compatibilidade ou implantação.
+
+## Fluxo planejado da aplicação
+
+1. A aplicação carrega o Manual de Atendimento da Rede CineViva em PDF.
+2. O texto é extraído e dividido em trechos menores.
+3. Cada trecho recebe uma representação semântica.
+4. Os trechos são armazenados em uma base vetorial.
+5. A pergunta do colaborador é utilizada para localizar os trechos mais relevantes.
+6. Os trechos recuperados são enviados ao Gemini como contexto.
+7. O Gemini gera uma resposta fundamentada no manual.
+8. A interface apresenta a resposta e as fontes consultadas.
+
+## Configuração de credenciais
+
+A chave da API do Gemini deverá ser informada por meio da variável de ambiente:
+
+GEMINI_API_KEY
